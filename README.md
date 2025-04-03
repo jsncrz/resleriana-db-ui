@@ -1,3 +1,4 @@
+This project's structure is based on [Bulletproof React](https://github.com/alan2207/bulletproof-react).
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
