@@ -1,13 +1,13 @@
+import AppLayout from '@/components/layout/layout';
 import type { Metadata } from 'next';
 import { Murecho } from 'next/font/google';
 import './globals.css';
-import AppLayout from '@/components/layout/layout';
+import { AppProvider } from './provider';
 
 const murecho = Murecho({
   variable: '--font-murecho',
   subsets: ['latin'],
 });
-
 
 export const metadata: Metadata = {
   title: 'Resleriana DB',
@@ -18,11 +18,11 @@ const RootLayout = async ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <html lang="en">
-      <body
-        className={`${murecho.variable} antialiased`}
-      >
-        <AppLayout>{children}</AppLayout>
+    <html lang='en'>
+      <body className={`${murecho.variable} antialiased`}>
+        <AppProvider>
+          <AppLayout>{children}</AppLayout>
+        </AppProvider>
       </body>
     </html>
   );

@@ -58,8 +58,6 @@ async function fetchApi<T>(
 
   if (!response.ok) {
     const message = (await response.json()).message || response.statusText;
-    if (typeof window !== 'undefined') {
-    }
     throw new Error(message);
   }
 

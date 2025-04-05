@@ -5,11 +5,13 @@ const createEnv = () => {
   const EnvSchema = z.object({
     API_URL: z.string(),
     APP_URL: z.string().optional().default('http://localhost:3000'),
+    IMAGE_URL: z.string(),
   });
 
   const envVars = {
-    API_URL: process.env.PUBLIC_API_URL,
-    APP_URL: process.env.PUBLIC_URL,
+    API_URL: process.env.NEXT_PUBLIC_API_URL,
+    APP_URL: process.env.NEXT_PUBLIC_URL,
+    IMAGE_URL: process.env.NEXT_PUBLIC_IMAGE_URL,
   };
 
   const parsedEnv = EnvSchema.safeParse(envVars);

@@ -1,9 +1,7 @@
-const characters = () => {
-    return (
-        <div>
-            Enter
-        </div>
-    );
-}
+import { CharactersList } from '@/features/characters/components/characters-list';
 
-export default characters;
+const Characters = () => {
+  return <CharactersList></CharactersList>;
+};
+
+export default Characters;
