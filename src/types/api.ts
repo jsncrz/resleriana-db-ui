@@ -29,3 +29,13 @@ export type CharacterStat = Entity<{
   mental: number;
   speed: number;
 }>;
+
+export type CharacterResist = Entity<{
+  fire: number;
+  ice: number;
+  bolt: number;
+  air: number;
+  slash: number;
+  strike: number;
+  stab: number;
+}>;
