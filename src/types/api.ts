@@ -19,3 +19,13 @@ export type Character = Entity<{
   role: string;
   initialRarity: number;
 }>;
+
+export type CharacterStat = Entity<{
+  name: string;
+  attack: number;
+  defense: number;
+  hp: number;
+  magic: number;
+  mental: number;
+  speed: number;
+}>;

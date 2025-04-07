@@ -29,7 +29,7 @@
   --color-strike-light: #8d694a;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #4b5d80;
     --foreground: #ece6e2;

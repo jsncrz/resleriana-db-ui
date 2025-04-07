@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-query';
 import Character from './_components/character';
 import { getCharacterQueryOptions } from '@/features/characters/api/get-character';
+import { getCharacterStatQueryOptions } from '@/features/character-stat/api/get-character-stat';
 export const metadata = {
   title: 'Character',
   description: 'Character',
@@ -14,6 +15,7 @@ const preloadData = async (characterId: string) => {
   const queryClient = new QueryClient();
   await Promise.all([
     queryClient.prefetchQuery(getCharacterQueryOptions(characterId)),
+    queryClient.prefetchQuery(getCharacterStatQueryOptions(characterId))
   ]);
   const dehydratedState = dehydrate(queryClient);
   return {
@@ -36,7 +38,6 @@ const CharacterPage = async ({
   const character = queryClient.getQueryData(
     getCharacterQueryOptions(characterId).queryKey,
   );
-  console.log(character);
 
   if (!character) return <div>Character Not Found</div>;
   return (
