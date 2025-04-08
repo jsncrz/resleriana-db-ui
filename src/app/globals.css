@@ -5,7 +5,7 @@
   --foreground: #4b5d80;
   --text-shadow-custom: 0 0px 5px rgb(236, 230, 226, 1);
   --text-shadow-reverse-custom: 0 0px 5px rgb(75, 93, 128, 1);
-  ;
+  --profile-filters: drop-shadow(0px -10px 10px rgba(0, 0, 0, 0.5));
   --font-sans: var(--font-murecho);
   --font-mono: var(--font-murecho);
 }
@@ -35,6 +35,7 @@
     --foreground: #ece6e2;
     --text-shadow-reverse-custom: 0 0px 8px rgb(236, 230, 226, 1);
     --text-shadow-custom: 0 0px 8px rgb(75, 93, 128, 1);
+    --profile-filters: drop-shadow(0px -10px 10px rgba(255, 255, 255, 0.5));
     ;
   }
 }
