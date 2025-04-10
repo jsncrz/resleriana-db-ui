@@ -39,3 +39,9 @@ export type CharacterResist = Entity<{
   strike: number;
   stab: number;
 }>;
+
+
+export type CharacterTag = Entity<{
+  id: number;
+  name: string;
+}>;

@@ -2,8 +2,9 @@
 
 import { env } from '@/config/env';
 import { useCharacters } from '../api/get-characters';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Character } from '@/types/api';
+import { useLocaleStore } from '@/hooks/use-locale';
 
 export type CharactersListProps = {};
 
@@ -23,19 +24,28 @@ const CharacterEntry = ({
   <div
     onClick={onClickEvent}
     key={character.id}
-    className={`h-full content-center cursor-pointer max-w-md rounded-3xl p-5px transition-[scale,box-shadow,border-width] duration-300 
-            ease-in-out hover:scale-105 hover:shadow-lg hover:border-4 border-3 border-foreground bg-gradient-to-b ${gradientColor}`}
+    className={`h-full content-center cursor-pointer max-w-md rounded-3xl p-5px drop-shadow-lg/25 transition-[scale,box-shadow,border-width] duration-300 
+            ease-in-out hover:scale-105 hover:shadow-lg bg-gradient-to-b ${gradientColor}`}
   >
-    <div className={`rounded-[calc(1.5rem-1px)] p-5 items-center text-center`}>
-      <img
-        className="size-full border-2 border-foreground rounded-xl"
-        src={imgUrl + character.id + '_icon.png'}
-      ></img>
-      <span className="text-md lg:text-lg font-bold antialiased text-shadow-md text-shadow-background/50">
+    <img 
+      className="size-[50px] absolute top-1 left-0"
+      src={
+        '/assets/elements/' + character.attackAttribute.toLowerCase() + '.png'
+      }
+    ></img>
+    <img 
+      className="size-[50px] absolute top-1 right-0"
+      src={
+        '/assets/role/' + character.role.toLowerCase() + '_simple.png'
+      }
+    ></img>
+    <img className="w-full" src={imgUrl + character.id + '_icon.png'}></img>
+    <div className="rounded-b-3xl p-3 text-center bg-background/15">
+      <span className="text-md lg:text-lg font-bold text-shadow-md text-shadow-background/50">
         {character.name}
       </span>
       <br />
-      <span className="text-sm lg:text-md antialiased text-shadow-sm text-shadow-background/50">
+      <span className="text-sm lg:text-md text-shadow-sm text-shadow-background/50">
         {character.anotherName}
       </span>
     </div>
@@ -45,14 +55,20 @@ const CharacterEntry = ({
 export const CharactersList = ({}: CharactersListProps) => {
   const router = useRouter();
   const imgUrl = env.IMAGE_URL;
-  const searchParams = useSearchParams();
-  const locale = searchParams?.get('locale')
-    ? String(searchParams.get('locale'))
-    : 'en';
+  const { locale } = useLocaleStore();
+  const attributeVariants = {
+    fire: 'from-fire-dark/45 to-fire-light/45 hover:shadow-fire-light/20',
+    ice: 'from-ice-dark/45 to-ice-light/45 hover:shadow-ice-light/20',
+    bolt: 'from-bolt-dark/45 to-bolt-light/45 hover:shadow-bolt-light/20',
+    air: 'from-air-dark/45 to-air-light/45 hover:shadow-air-light/20',
+    strike:
+      'from-strike-dark/45 to-strike-light/45 hover:shadow-strike-light/20',
+    slash:
+      'from-slash-dark/45 to-slash-light/45 hover:shadow-slash-light/20',
+    stab: 'from-stab-dark/45 to-stab-light/45 hover:shadow-stab-light/20',
+  };
 
-  const charactersQuery = useCharacters({
-    locale: locale,
-  });
+  const charactersQuery = useCharacters({locale});
   if (charactersQuery.isLoading) {
     return (
       <div className="flex h-48 w-full items-center justify-center">HELLO</div>
@@ -66,17 +82,6 @@ export const CharactersList = ({}: CharactersListProps) => {
   return (
     <div className="grid grid-cols-3 lg:grid-cols-6 gap-8 items-center">
       {characters.map((chara) => {
-        const attributeVariants = {
-          fire: 'from-fire-dark/25 to-fire-light/25 hover:shadow-fire-light/20',
-          ice: 'from-ice-dark/25 to-ice-light/25 hover:shadow-ice-light/20',
-          bolt: 'from-bolt-dark/25 to-bolt-light/25 hover:shadow-bolt-light/20',
-          air: 'from-air-dark/25 to-air-light/25 hover:shadow-air-light/20',
-          strike:
-            'from-strike-dark/25 to-strike-light/25 hover:shadow-strike-light/20',
-          slash:
-            'from-slash-dark/25 to-slash-light/25 hover:shadow-slash-light/20',
-          stab: 'from-stab-dark/25 to-stab-light/25 hover:shadow-stab-light/20',
-        };
         const attribute =
           chara.attackAttribute.toLocaleLowerCase() as keyof typeof attributeVariants;
         return (

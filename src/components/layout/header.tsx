@@ -1,6 +1,7 @@
 'use client';
 import { paths } from '@/config/paths';
 import NextLink from 'next/link';
+import { LocaleState, useLocaleStore } from '@/hooks/use-locale';
 
 import { usePathname } from 'next/navigation';
 
@@ -10,6 +11,8 @@ type NavigationItem = {
 };
 const Header = () => {
   const pathname = usePathname();
+  const locale = useLocaleStore((state: LocaleState) => state.locale)
+  const toggleLocale = useLocaleStore((state: LocaleState) => state.toggleLocale)
 
   const navigation = [
     { name: 'Characters', to: paths.characters.getHref() },
@@ -19,8 +22,8 @@ const Header = () => {
     { name: 'Materials', to: paths.materials.getHref() },
   ].filter(Boolean) as NavigationItem[];
   return (
-    <header className="text-background text-lg font-medium p-4 flex justify-center">
-      <div className="bg-foreground/75 flex justify-center items-stretch p-2 w-2/3 rounded-sm">
+    <header className="text-background text-lg font-medium flex justify-center w-full">
+      <div className="h-12 w-full bg-foreground/75 flex justify-center items-stretch p-2 w-2/3 drop-shadow-md">
         <nav className="flex space-x-8">
           {navigation.map((item) => {
             const isActive = pathname === item.to;
@@ -36,6 +39,11 @@ const Header = () => {
                 </NextLink>
             );
           })}
+          <button onClick={() => {
+            toggleLocale();
+          }}>
+            {locale === 'jp' ? 'Japanese' : 'English'}
+          </button>
         </nav>
       </div>
     </header>
