@@ -3,13 +3,13 @@ import { persist } from 'zustand/middleware'
 
 export interface LocaleState {
   locale: string;
-  toggleLocale: () => void
+  setLocale: (locale: string) => void
 }
 export const useLocaleStore = create<LocaleState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       locale: 'en',
-      toggleLocale: () => set({ locale: get().locale === 'jp' ? 'en' : 'jp' }),
+      setLocale: (locale: string) => set({ locale: locale }),
     }),
     {
       name: 'app-locale',

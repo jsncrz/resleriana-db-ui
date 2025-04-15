@@ -24,8 +24,8 @@ const CharacterEntry = ({
   <div
     onClick={onClickEvent}
     key={character.id}
-    className={`h-full content-center cursor-pointer max-w-md rounded-3xl p-5px drop-shadow-lg/25 transition-[scale,box-shadow,border-width] duration-300 
-            ease-in-out hover:scale-105 hover:shadow-lg bg-gradient-to-b ${gradientColor}`}
+    className={`overflow-hidden h-full content-center cursor-pointer max-w-md rounded-3xl p-5px drop-shadow-lg/25 transition-[scale,box-shadow] duration-300 
+            ease-in-out hover:scale-103 hover:shadow-glow bg-gradient-to-b ${gradientColor}`}
   >
     <img 
       className="size-[50px] absolute top-1 left-0"
@@ -40,7 +40,7 @@ const CharacterEntry = ({
       }
     ></img>
     <img className="w-full" src={imgUrl + character.id + '_icon.png'}></img>
-    <div className="rounded-b-3xl p-3 text-center bg-background/15">
+    <div className="rounded-b-3xl p-3 text-center">
       <span className="text-md lg:text-lg font-bold text-shadow-md text-shadow-background/50">
         {character.name}
       </span>
@@ -57,15 +57,15 @@ export const CharactersList = ({}: CharactersListProps) => {
   const imgUrl = env.IMAGE_URL;
   const { locale } = useLocaleStore();
   const attributeVariants = {
-    fire: 'from-fire-dark/45 to-fire-light/45 hover:shadow-fire-light/20',
-    ice: 'from-ice-dark/45 to-ice-light/45 hover:shadow-ice-light/20',
-    bolt: 'from-bolt-dark/45 to-bolt-light/45 hover:shadow-bolt-light/20',
-    air: 'from-air-dark/45 to-air-light/45 hover:shadow-air-light/20',
+    fire: 'from-fire-dark/45 to-fire-light/45 hover:shadow-fire-light/50',
+    ice: 'from-ice-dark/45 to-ice-light/45 hover:shadow-ice-light/50',
+    bolt: 'from-bolt-dark/45 to-bolt-light/45 hover:shadow-bolt-light/50',
+    air: 'from-air-dark/45 to-air-light/45 hover:shadow-air-light/50',
     strike:
-      'from-strike-dark/45 to-strike-light/45 hover:shadow-strike-light/20',
+      'from-strike-dark/45 to-strike-light/45 hover:shadow-strike-light/50',
     slash:
-      'from-slash-dark/45 to-slash-light/45 hover:shadow-slash-light/20',
-    stab: 'from-stab-dark/45 to-stab-light/45 hover:shadow-stab-light/20',
+      'from-slash-dark/45 to-slash-light/45 hover:shadow-slash-light/50',
+    stab: 'from-stab-dark/45 to-stab-light/45 hover:shadow-stab-light/50',
   };
 
   const charactersQuery = useCharacters({locale});
