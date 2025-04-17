@@ -8,6 +8,15 @@ export type Entity<T> = {
   [K in keyof T]: T[K];
 } & BaseEntity;
 
+export type Page = { 
+  number: number | null 
+  size: number | null
+  totalElements: number | null
+  totalPages: number | null
+}
+/*
+-------------------------- CHARACTERS --------------------------
+*/
 export type Character = Entity<{
   name: string;
   anotherName: string;
@@ -44,4 +53,14 @@ export type CharacterResist = Entity<{
 export type CharacterTag = Entity<{
   id: number;
   name: string;
+}>;
+
+/*
+-------------------------- MEMORIAS --------------------------
+*/
+
+export type Memoria = Entity<{
+  name: string;
+  description: string;
+  rarity: string;
 }>;

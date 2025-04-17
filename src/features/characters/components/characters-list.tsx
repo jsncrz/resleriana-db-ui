@@ -40,7 +40,7 @@ const CharacterEntry = ({
       }
     ></img>
     <img className="w-full" src={imgUrl + character.id + '_icon.png'}></img>
-    <div className="rounded-b-3xl p-3 text-center">
+    <div className="border-t-1 border-foreground rounded-b-3xl p-3 text-center">
       <span className="text-md lg:text-lg font-bold text-shadow-md text-shadow-background/50">
         {character.name}
       </span>
