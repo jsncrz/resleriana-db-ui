@@ -1,11 +1,14 @@
 'use client';
 
-import { env } from '@/config/env';
-import { useMemorias } from '../api/get-memorias';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Memoria } from '@/types/api';
-import { useLocaleStore } from '@/hooks/use-locale';
 import { DataPagination } from '@/components/ui/data-pagination';
+import { env } from '@/config/env';
+import { useDisclosure } from '@/hooks/use-disclosure';
+import { useLocaleStore } from '@/hooks/use-locale';
+import { Memoria } from '@/types/api';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import { useMemorias } from '../api/get-memorias';
+import MemoriaView from './memoria-view';
 
 export type MemoriasListProps = {};
 
@@ -35,9 +38,10 @@ const MemoriaEntry = ({ imgUrl, memoria, onClickEvent }: MemoriaEntryProps) => (
 );
 
 export const MemoriasList = ({}: MemoriasListProps) => {
-  const router = useRouter();
   const imgUrl = env.IMAGE_URL;
+  const { open, isOpen, toggle } = useDisclosure();
   const { locale } = useLocaleStore();
+  const [chosen, setChosen] = useState<number>();
   const searchParams = useSearchParams();
   const page = searchParams?.get('page') ? Number(searchParams.get('page')) : 0;
   const sort = searchParams?.get('sort') || 'releaseDate,desc';
@@ -59,18 +63,32 @@ export const MemoriasList = ({}: MemoriasListProps) => {
 
   return (
     <div>
-      <DataPagination totalPages={paging?.totalPages || 0} currentPage={paging?.number || 0} rootUrl='memorias'></DataPagination>
+      <DataPagination
+        totalPages={paging?.totalPages || 0}
+        currentPage={paging?.number || 0}
+        rootUrl="memorias"
+      ></DataPagination>
       <div className="grid grid-cols-4 lg:grid-cols-8 gap-4 items-center">
-        {memorias.map((chara) => {
+        {memorias.map((memoria) => {
           return (
-            <MemoriaEntry
-              key={chara.id}
-              memoria={chara}
-              imgUrl={imgUrl}
-              onClickEvent={() => router.push(`/memorias/${chara.id}`)}
-            ></MemoriaEntry>
+              <MemoriaEntry
+                key={memoria.id}
+                memoria={memoria}
+                imgUrl={imgUrl}
+                onClickEvent={() => {
+                  setChosen(memoria.id)
+                  open();
+                }}
+              ></MemoriaEntry>
           );
         })}
+        {chosen && (
+          <MemoriaView
+            isOpen={isOpen}
+            toggle={toggle}
+            memoriaId={chosen}
+          ></MemoriaView>
+        )}
       </div>
     </div>
   );

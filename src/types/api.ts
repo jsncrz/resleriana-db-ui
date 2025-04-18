@@ -64,3 +64,17 @@ export type Memoria = Entity<{
   description: string;
   rarity: string;
 }>;
+
+export type MemoriaGrowth = {
+  level: number;
+  value: number
+}
+
+export type MemoriaStat = Entity<{
+  attack: MemoriaGrowth[];
+  defense: MemoriaGrowth[];
+  hp: MemoriaGrowth[];
+  magic: MemoriaGrowth[];
+  mental: MemoriaGrowth[];
+  speed: MemoriaGrowth[];
+}>;
