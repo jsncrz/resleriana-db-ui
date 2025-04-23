@@ -20,7 +20,7 @@ const StatEntry = ({ label, value }: StatEntryProps) => (
     </div>
   </>
 );
-export const MemoriaStatusView = ({ memoriaId }: { memoriaId: number }) => {
+export const  MemoriaStatusView = ({ memoriaId }: { memoriaId: number }) => {
   const memoriaStatusQuery = useMemoriaStatus({ memoriaId });
   const [level, setLevel] = useState(30);
 

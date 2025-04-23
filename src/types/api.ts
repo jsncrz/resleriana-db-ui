@@ -13,7 +13,7 @@ export type Page = {
   size: number | null
   totalElements: number | null
   totalPages: number | null
-}
+};
 /*
 -------------------------- CHARACTERS --------------------------
 */
@@ -63,12 +63,13 @@ export type Memoria = Entity<{
   name: string;
   description: string;
   rarity: string;
+  abilities: Ability[];
 }>;
 
 export type MemoriaGrowth = {
   level: number;
   value: number
-}
+};
 
 export type MemoriaStat = Entity<{
   attack: MemoriaGrowth[];
@@ -78,3 +79,13 @@ export type MemoriaStat = Entity<{
   mental: MemoriaGrowth[];
   speed: MemoriaGrowth[];
 }>;
+
+export type Ability = {
+  name: string;
+  description: string;
+  abilityEffects: AbilityEffect[];
+};
+
+export type AbilityEffect = {
+  value: number;
+};

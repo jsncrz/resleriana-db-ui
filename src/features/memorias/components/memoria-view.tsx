@@ -8,6 +8,7 @@ import { useMemoria } from '../api/get-memoria';
 import { useLocaleStore } from '@/hooks/use-locale';
 import { env } from '@/config/env';
 import { MemoriaStatusView } from '@/features/memoria-status/components/memoria-stat-view';
+import { MemoriaAbilityView } from '@/features/memoria-ability/components/memoria-ability-view';
 
 export type MemoriaViewProps = {
   memoriaId: number;
@@ -46,11 +47,14 @@ const MemoriaView = ({ memoriaId, isOpen, toggle }: MemoriaViewProps) => {
             <p className="text-lg lg:text-2xl font-bold text-shadow-md text-shadow-background/50">
               {memoria.name}
             </p>
-            <div className="justify-items-center item-center place-self-center p-5">
-                <MemoriaStatusView memoriaId={memoria.id}></MemoriaStatusView>
+            <div className="justify-items-center item-center place-self-center p-6">
+              <MemoriaStatusView memoriaId={memoria.id}></MemoriaStatusView>
+            </div>
+            <div className='border-y-1 p-6'>
+              <MemoriaAbilityView abilities={memoria.abilities}></MemoriaAbilityView>
             </div>
 
-            <p className="lg:text-lg font-bold text-shadow-md text-shadow-background/50">
+            <p className="p-6 lg:text-lg font-bold text-shadow-md text-shadow-background/50">
               {memoria.description}
             </p>
           </div>

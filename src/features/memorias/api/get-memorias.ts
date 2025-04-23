@@ -26,7 +26,7 @@ export const getMemoriasQueryOptions = ({
   locale = 'en',
   page = 1,
   sort,
-  size = 40
+  size = 30
 }: { locale?:string, rarity?: number, page?: number, sort?: string, size?: number } = {}) => {
   return queryOptions({
     queryKey: ['memorias', { rarity, locale, page, sort }],

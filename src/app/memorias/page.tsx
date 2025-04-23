@@ -21,7 +21,7 @@ const MemoriasPage = async ({
   await queryClient.prefetchQuery(getMemoriasQueryOptions({
     rarity: searchParams.rarity,
     page: searchParams.page ? Number(searchParams.page) : 1,
-    size: searchParams.size ? Number(searchParams.size) : 40,
+    size: searchParams.size ? Number(searchParams.size) : 30,
     sort: searchParams.sort || 'releaseDate,desc'
   }));
   const dehydratedState = dehydrate(queryClient);
