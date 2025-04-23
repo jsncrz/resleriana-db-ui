@@ -87,7 +87,7 @@ export const CharacterView = ({ characterId }: { characterId: string }) => {
                   ></CharacterTagList>
                 </div>
                 <div className="flex-1 text-center bg-black/20 dark:bg-white/60 p-6 border-y-2 rounded shadow-md">
-                  <p className="text-lg italic text-white  dark:text-background">
+                  <p className="text-lg italic text-white dark:text-background">
                     {character.acquisitionText}
                   </p>
                 </div>

@@ -34,18 +34,18 @@ const CharacterEntry = ({
       }
     ></img>
     <img 
-      className="size-[50px] absolute top-1 right-0"
+      className="size-[45px] absolute top-1 right-0"
       src={
         '/assets/role/' + character.role.toLowerCase() + '_simple.png'
       }
     ></img>
-    <img className="w-full" src={imgUrl + character.id + '_icon.png'}></img>
+    <img className="w-full bg-white/50 " src={imgUrl + character.id + '_icon.png'}></img>
     <div className="border-t-1 border-foreground rounded-b-3xl p-3 text-center">
-      <span className="text-md lg:text-lg font-bold text-shadow-md text-shadow-background/50">
+      <span className=" text-white text-md lg:text-lg font-bold text-shadow-md">
         {character.name}
       </span>
       <br />
-      <span className="text-sm lg:text-md text-shadow-sm text-shadow-background/50">
+      <span className="text-white text-sm lg:text-md text-shadow-sm">
         {character.anotherName}
       </span>
     </div>
