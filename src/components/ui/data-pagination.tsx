@@ -65,7 +65,7 @@ export const DataPagination = ({
             </PaginationLink>
           </PaginationItem>
         )}
-        {totalPages > currentPage && (
+        {totalPages - 1 > currentPage && (
           <>
             <PaginationItem>
               <PaginationEllipsis />
