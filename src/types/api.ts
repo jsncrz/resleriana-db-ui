@@ -80,12 +80,32 @@ export type MemoriaStat = Entity<{
   speed: MemoriaGrowth[];
 }>;
 
+export type Effect = {
+  value: number;
+  effectIndex: number;
+};
+
 export type Ability = {
   name: string;
   description: string;
-  abilityEffects: AbilityEffect[];
+  abilityEffects: Effect[];
 };
 
-export type AbilityEffect = {
-  value: number;
-};
+export type Skill = {
+  name: string;
+  description: string;
+  attribute: string;
+  effectType: string;
+  targetType: string;
+  effects: Effect[];
+  power: number;
+  breakPower: number;
+  skillWait: number;
+  linkedSkill: string;
+}
+
+export type CharacterSkill = {
+  skill1: Skill[];
+  skill2: Skill[];
+  burstSkill: Skill[];
+}

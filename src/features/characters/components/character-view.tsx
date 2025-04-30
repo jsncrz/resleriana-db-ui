@@ -12,6 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { CharacterSkillView } from '@/features/character-skill/components/character-skill-view';
 
 export const CharacterView = ({ characterId }: { characterId: string }) => {
   const { locale } = useLocaleStore();
@@ -31,7 +32,7 @@ export const CharacterView = ({ characterId }: { characterId: string }) => {
   return (
     <div className="bg-foreground/10 drop-shadow-xl rounded-md grid grid-flow-row grid-cols-2 gap-4 p-6 md:grid-cols-3">
       <div className="size-full row-span-6 col-span-2 md:col-span-1 md:border-r-2">
-        <div className="m-auto max-w-full min-w-1/2 bg-white/60 dark:bg-black/20 ring-3 rounded rounded-t-4xl lg:w-1/2 overflow-hidden">
+        <div className="m-auto max-w-full min-w-1/2 bg-white/60 dark:bg-black/30 ring-3 rounded rounded-t-4xl lg:w-1/2 overflow-hidden">
           <img
             className="w-full filter-(--profile-filters)"
             src={imgUrl + character.id + '_profile.png'}
@@ -46,7 +47,7 @@ export const CharacterView = ({ characterId }: { characterId: string }) => {
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col gap-6">
-                <div className="flex flex-col gap-4 bg-black/20 dark:bg-white/60 p-6 items-center md:flex-row border-b-2 rounded shadow-md justify-items-stretch">
+                <div className="flex flex-col gap-4 bg-black/30 dark:bg-white/60 p-6 items-center md:flex-row border-b-2 rounded shadow-md justify-items-stretch">
                   {/* START OF NAME  */}
                   <div className="flex-none flex content-center">
                     <img
@@ -86,7 +87,7 @@ export const CharacterView = ({ characterId }: { characterId: string }) => {
                     characterTagId={characterId}
                   ></CharacterTagList>
                 </div>
-                <div className="flex-1 text-center bg-black/20 dark:bg-white/60 p-6 border-y-2 rounded shadow-md">
+                <div className="flex-1 text-center bg-black/30 dark:bg-white/60 p-6 border-y-2 rounded shadow-md">
                   <p className="text-lg italic text-white dark:text-background">
                     {character.acquisitionText}
                   </p>
@@ -106,6 +107,11 @@ export const CharacterView = ({ characterId }: { characterId: string }) => {
             characterResistId={characterId}
           ></CharacterResistView>
         </div>
+
+        <div className="flex-1 p-6 border-y-2">
+          <CharacterSkillView  characterSkillId={characterId}></CharacterSkillView>
+        </div>
+        
       </div>
     </div>
   );
