@@ -1,6 +1,7 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import { useCharacterSkill } from '../api/get-character-skill';
 
 export const CharacterSkillView = ({

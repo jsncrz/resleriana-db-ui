@@ -1,18 +1,19 @@
 'use client';
 
-import { env } from '@/config/env';
-import { useCharacter } from '../api/get-character';
-import { CharacterStatView } from '@/features/character-stat/components/character-stat-view';
-import { CharacterResistView } from '@/features/character-resist/components/character-resist-view';
-import { useLocaleStore } from '@/hooks/use-locale';
-import { CharacterTagList } from '@/features/character-tag/components/character-tag-list';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { env } from '@/config/env';
+import { CharacterResistView } from '@/features/character-resist/components/character-resist-view';
 import { CharacterSkillView } from '@/features/character-skill/components/character-skill-view';
+import { CharacterStatView } from '@/features/character-stat/components/character-stat-view';
+import { CharacterTagList } from '@/features/character-tag/components/character-tag-list';
+import { useLocaleStore } from '@/hooks/use-locale';
+
+import { useCharacter } from '../api/get-character';
 
 export const CharacterView = ({ characterId }: { characterId: string }) => {
   const { locale } = useLocaleStore();
@@ -42,7 +43,7 @@ export const CharacterView = ({ characterId }: { characterId: string }) => {
       <div className="flex flex-col row-span-1 col-span-2">
         <Accordion type="single" collapsible defaultValue="item-1">
           <AccordionItem value="item-1">
-            <AccordionTrigger className='hover:none text-xl'>
+            <AccordionTrigger className="hover:none text-xl">
               Profile
             </AccordionTrigger>
             <AccordionContent>
@@ -109,9 +110,10 @@ export const CharacterView = ({ characterId }: { characterId: string }) => {
         </div>
 
         <div className="flex-1 p-6 border-y-2">
-          <CharacterSkillView  characterSkillId={characterId}></CharacterSkillView>
+          <CharacterSkillView
+            characterSkillId={characterId}
+          ></CharacterSkillView>
         </div>
-        
       </div>
     </div>
   );

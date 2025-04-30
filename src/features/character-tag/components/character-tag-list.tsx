@@ -1,10 +1,11 @@
 'use client';
 
 import { useLocaleStore } from '@/hooks/use-locale';
+
 import { useCharacterTag } from '../api/get-character-tag';
 
 export const CharacterTagList = ({
-  characterTagId
+  characterTagId,
 }: {
   characterTagId: string;
 }) => {
@@ -24,7 +25,15 @@ export const CharacterTagList = ({
   return (
     <div className="flex gap-x-4 gap-y-2 flex-wrap">
       {characterTag.map((tag) => {
-        return <div key={tag.id} className='shadow-md rounded text-white dark:text-background py-1 px-3 bold bg-black/20 dark:bg-white/60'> {tag.name}</div>;
+        return (
+          <div
+            key={tag.id}
+            className="shadow-md rounded text-white dark:text-background py-1 px-3 bold bg-black/20 dark:bg-white/60"
+          >
+            {' '}
+            {tag.name}
+          </div>
+        );
       })}
     </div>
   );

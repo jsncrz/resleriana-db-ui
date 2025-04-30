@@ -4,16 +4,21 @@ import { api } from '@/lib/api-client';
 import { QueryConfig } from '@/lib/react-query';
 import { Character } from '@/types/api';
 
-export const getCharacter = (
-  { characterId }: { characterId: string }
-): Promise<Character> => {
+export const getCharacter = ({
+  characterId,
+}: {
+  characterId: string;
+}): Promise<Character> => {
   return api.get(`/characters/${characterId}`);
 };
 
-export const getCharacterQueryOptions = (characterId: string, locale: string) => {
+export const getCharacterQueryOptions = (
+  characterId: string,
+  locale: string,
+) => {
   return queryOptions({
     queryKey: ['character', { characterId, locale }],
-    queryFn: () => getCharacter({ characterId })
+    queryFn: () => getCharacter({ characterId }),
   });
 };
 
@@ -26,7 +31,7 @@ type UseCharacterOptions = {
 export const useCharacter = ({
   queryConfig,
   characterId,
-  locale
+  locale,
 }: UseCharacterOptions) => {
   return useQuery({
     ...getCharacterQueryOptions(characterId, locale),

@@ -8,11 +8,11 @@ export type Entity<T> = {
   [K in keyof T]: T[K];
 } & BaseEntity;
 
-export type Page = { 
-  number: number | null 
-  size: number | null
-  totalElements: number | null
-  totalPages: number | null
+export type Page = {
+  number: number | null;
+  size: number | null;
+  totalElements: number | null;
+  totalPages: number | null;
 };
 /*
 -------------------------- CHARACTERS --------------------------
@@ -49,7 +49,6 @@ export type CharacterResist = Entity<{
   stab: number;
 }>;
 
-
 export type CharacterTag = Entity<{
   id: number;
   name: string;
@@ -68,7 +67,7 @@ export type Memoria = Entity<{
 
 export type MemoriaGrowth = {
   level: number;
-  value: number
+  value: number;
 };
 
 export type MemoriaStat = Entity<{
@@ -102,10 +101,10 @@ export type Skill = {
   breakPower: number;
   skillWait: number;
   linkedSkill: string;
-}
+};
 
 export type CharacterSkill = {
   skill1: Skill[];
   skill2: Skill[];
   burstSkill: Skill[];
-}
+};

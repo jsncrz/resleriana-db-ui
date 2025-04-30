@@ -1,7 +1,7 @@
-import { MemoriasList } from "@/features/memorias/components/memoria-list"
+import { MemoriasList } from '@/features/memorias/components/memoria-list';
 
 const Memorias = () => {
-  return <MemoriasList></MemoriasList>
+  return <MemoriasList></MemoriasList>;
 };
 
 export default Memorias;

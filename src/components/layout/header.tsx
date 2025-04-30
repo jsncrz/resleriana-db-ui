@@ -1,13 +1,10 @@
 'use client';
-import { paths } from '@/config/paths';
-import NextLink from 'next/link';
-import { LocaleState, useLocaleStore } from '@/hooks/use-locale';
 
-import { usePathname } from 'next/navigation';
-
-import * as React from 'react';
 import { Moon, Sun } from 'lucide-react';
+import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -16,6 +13,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { paths } from '@/config/paths';
+import { LocaleState, useLocaleStore } from '@/hooks/use-locale';
 type NavigationItem = {
   name: string;
   to: string;
@@ -23,10 +22,8 @@ type NavigationItem = {
 const Header = () => {
   const pathname = usePathname();
   const locale = useLocaleStore((state: LocaleState) => state.locale);
-  const { setTheme } = useTheme()
-  const setLocale = useLocaleStore(
-    (state: LocaleState) => state.setLocale,
-  );
+  const { setTheme } = useTheme();
+  const setLocale = useLocaleStore((state: LocaleState) => state.setLocale);
 
   const navigation = [
     { name: 'Characters', to: paths.characters.getHref() },
@@ -55,7 +52,7 @@ const Header = () => {
           })}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant='ghost'>
+              <Button variant="ghost">
                 <div className="">
                   {locale === 'jp' ? 'Japanese' : 'English'}
                 </div>
@@ -72,7 +69,7 @@ const Header = () => {
           </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant='ghost' size="icon">
+              <Button variant="ghost" size="icon">
                 <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Toggle theme</span>

@@ -1,12 +1,12 @@
 'use client';
 
-import { env } from '@/config/env';
-import { useCharacters } from '../api/get-characters';
 import { useRouter } from 'next/navigation';
-import { Character } from '@/types/api';
-import { useLocaleStore } from '@/hooks/use-locale';
 
-export type CharactersListProps = {};
+import { env } from '@/config/env';
+import { useLocaleStore } from '@/hooks/use-locale';
+import { Character } from '@/types/api';
+
+import { useCharacters } from '../api/get-characters';
 
 type CharacterEntryProps = {
   imgUrl: string;
@@ -27,19 +27,20 @@ const CharacterEntry = ({
     className={`overflow-hidden h-full content-center cursor-pointer max-w-md rounded-3xl p-5px drop-shadow-lg/25 transition-[scale,box-shadow] duration-300 
             ease-in-out hover:scale-103 hover:shadow-glow bg-gradient-to-b ${gradientColor}`}
   >
-    <img 
+    <img
       className="size-[50px] absolute top-1 left-0"
       src={
         '/assets/elements/' + character.attackAttribute.toLowerCase() + '.png'
       }
     ></img>
-    <img 
+    <img
       className="size-[45px] absolute top-1 right-0"
-      src={
-        '/assets/role/' + character.role.toLowerCase() + '_simple.png'
-      }
+      src={'/assets/role/' + character.role.toLowerCase() + '_simple.png'}
     ></img>
-    <img className="w-full bg-white/50 " src={imgUrl + character.id + '_icon.png'}></img>
+    <img
+      className="w-full bg-white/50 "
+      src={imgUrl + character.id + '_icon.png'}
+    ></img>
     <div className="border-t-1 border-foreground rounded-b-3xl p-3 text-center">
       <span className=" text-white text-md lg:text-lg font-bold text-shadow-md">
         {character.name}
@@ -52,7 +53,7 @@ const CharacterEntry = ({
   </div>
 );
 
-export const CharactersList = ({}: CharactersListProps) => {
+export const CharactersList = () => {
   const router = useRouter();
   const imgUrl = env.IMAGE_URL;
   const { locale } = useLocaleStore();
@@ -63,12 +64,11 @@ export const CharactersList = ({}: CharactersListProps) => {
     air: 'from-air-dark/45 to-air-light/45 hover:shadow-air-light/50',
     strike:
       'from-strike-dark/45 to-strike-light/45 hover:shadow-strike-light/50',
-    slash:
-      'from-slash-dark/45 to-slash-light/45 hover:shadow-slash-light/50',
+    slash: 'from-slash-dark/45 to-slash-light/45 hover:shadow-slash-light/50',
     stab: 'from-stab-dark/45 to-stab-light/45 hover:shadow-stab-light/50',
   };
 
-  const charactersQuery = useCharacters({locale});
+  const charactersQuery = useCharacters({ locale });
   if (charactersQuery.isLoading) {
     return (
       <div className="flex h-48 w-full items-center justify-center">HELLO</div>
