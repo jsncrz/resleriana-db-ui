@@ -49,6 +49,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint to check code quality
 
+## Related project
+- [Resleriana DB API](https://github.com/jsncrz/resleriana-db) - This app uses the API URLS from this Spring app
+
 ## Project Structure
 
 This project follows the [Bulletproof React](https://github.com/alan2207/bulletproof-react) architecture for scalable and maintainable React applications.
