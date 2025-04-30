@@ -49,7 +49,6 @@ export const CharacterResistView = ({
       <ResistEntry label="Strike" value={characterResist.strike}></ResistEntry>
       <ResistEntry label="Stab" value={characterResist.stab}></ResistEntry>
       <div className="row-span-1 col-span-1 bg-black/30 "></div>
-
     </div>
   );
 };

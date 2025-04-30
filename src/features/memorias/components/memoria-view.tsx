@@ -4,11 +4,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { useMemoria } from '../api/get-memoria';
-import { useLocaleStore } from '@/hooks/use-locale';
 import { env } from '@/config/env';
-import { MemoriaStatusView } from '@/features/memoria-status/components/memoria-stat-view';
 import { MemoriaAbilityView } from '@/features/memoria-ability/components/memoria-ability-view';
+import { MemoriaStatusView } from '@/features/memoria-status/components/memoria-stat-view';
+import { useLocaleStore } from '@/hooks/use-locale';
+
+import { useMemoria } from '../api/get-memoria';
 
 export type MemoriaViewProps = {
   memoriaId: number;
@@ -50,8 +51,10 @@ const MemoriaView = ({ memoriaId, isOpen, toggle }: MemoriaViewProps) => {
             <div className="justify-items-center item-center place-self-center p-6">
               <MemoriaStatusView memoriaId={memoria.id}></MemoriaStatusView>
             </div>
-            <div className='border-y-1 p-6'>
-              <MemoriaAbilityView abilities={memoria.abilities}></MemoriaAbilityView>
+            <div className="border-y-1 p-6">
+              <MemoriaAbilityView
+                abilities={memoria.abilities}
+              ></MemoriaAbilityView>
             </div>
 
             <p className="p-6 lg:text-lg font-bold text-shadow-md text-shadow-background/50">

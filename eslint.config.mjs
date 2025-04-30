@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import globals from 'globals';
 import nextPlugin from '@next/eslint-plugin-next';
 import importPlugin from 'eslint-plugin-import';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
@@ -30,6 +31,10 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+      },
+      globals: {
+        ...globals.node,
+        ...globals.es2021,
       },
     },
     linterOptions: {
@@ -69,6 +74,11 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2021,
       },
     },
     settings: {

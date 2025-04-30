@@ -4,16 +4,18 @@ import { api } from '@/lib/api-client';
 import { QueryConfig } from '@/lib/react-query';
 import { MemoriaStat } from '@/types/api';
 
-export const getMemoriaStat = (
-  { memoriaId }: { memoriaId: number }
-): Promise<MemoriaStat> => {
+export const getMemoriaStat = ({
+  memoriaId,
+}: {
+  memoriaId: number;
+}): Promise<MemoriaStat> => {
   return api.get(`/memorias/${memoriaId}/status`);
 };
 
 export const getMemoriaStatQueryOptions = (memoriaId: number) => {
   return queryOptions({
     queryKey: ['memoriaStat', memoriaId],
-    queryFn: () => getMemoriaStat({ memoriaId })
+    queryFn: () => getMemoriaStat({ memoriaId }),
   });
 };
 

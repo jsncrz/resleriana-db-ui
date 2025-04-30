@@ -3,9 +3,11 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import Character from './_components/character';
-import { getCharacterQueryOptions } from '@/features/characters/api/get-character';
+
 import { getCharacterStatQueryOptions } from '@/features/character-stat/api/get-character-stat';
+import { getCharacterQueryOptions } from '@/features/characters/api/get-character';
+
+import Character from './_components/character';
 export const metadata = {
   title: 'Character',
   description: 'Character',
@@ -15,7 +17,7 @@ const preloadData = async (characterId: string) => {
   const queryClient = new QueryClient();
   await Promise.all([
     queryClient.prefetchQuery(getCharacterQueryOptions(characterId)),
-    queryClient.prefetchQuery(getCharacterStatQueryOptions(characterId))
+    queryClient.prefetchQuery(getCharacterStatQueryOptions(characterId)),
   ]);
   const dehydratedState = dehydrate(queryClient);
   return {

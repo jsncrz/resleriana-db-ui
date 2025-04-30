@@ -48,13 +48,16 @@ export const DataPagination = ({
         )}
         {currentPage > 1 && (
           <PaginationItem>
-            <PaginationLink href={createHref(currentPage - 1)} className='font-bold'>
+            <PaginationLink
+              href={createHref(currentPage - 1)}
+              className="font-bold"
+            >
               {currentPage - 1}
             </PaginationLink>
           </PaginationItem>
         )}
         <PaginationItem>
-          <PaginationLink className='bg-foreground font-bold text-background'>
+          <PaginationLink className="bg-foreground font-bold text-background">
             {currentPage}
           </PaginationLink>
         </PaginationItem>

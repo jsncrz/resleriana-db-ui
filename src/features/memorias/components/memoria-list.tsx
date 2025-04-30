@@ -1,16 +1,17 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+
 import { DataPagination } from '@/components/ui/data-pagination';
 import { env } from '@/config/env';
 import { useDisclosure } from '@/hooks/use-disclosure';
 import { useLocaleStore } from '@/hooks/use-locale';
 import { Memoria } from '@/types/api';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import { useMemorias } from '../api/get-memorias';
-import MemoriaView from './memoria-view';
 
-export type MemoriasListProps = {};
+import { useMemorias } from '../api/get-memorias';
+
+import MemoriaView from './memoria-view';
 
 type MemoriaEntryProps = {
   imgUrl: string;
@@ -37,7 +38,7 @@ const MemoriaEntry = ({ imgUrl, memoria, onClickEvent }: MemoriaEntryProps) => (
   </div>
 );
 
-export const MemoriasList = ({}: MemoriasListProps) => {
+export const MemoriasList = () => {
   const imgUrl = env.IMAGE_URL;
   const { open, isOpen, toggle } = useDisclosure();
   const { locale } = useLocaleStore();
@@ -71,15 +72,15 @@ export const MemoriasList = ({}: MemoriasListProps) => {
       <div className="grid grid-cols-3 lg:grid-cols-6 gap-4 items-center">
         {memorias.map((memoria) => {
           return (
-              <MemoriaEntry
-                key={memoria.id}
-                memoria={memoria}
-                imgUrl={imgUrl}
-                onClickEvent={() => {
-                  setChosen(memoria.id)
-                  open();
-                }}
-              ></MemoriaEntry>
+            <MemoriaEntry
+              key={memoria.id}
+              memoria={memoria}
+              imgUrl={imgUrl}
+              onClickEvent={() => {
+                setChosen(memoria.id);
+                open();
+              }}
+            ></MemoriaEntry>
           );
         })}
         {chosen && (

@@ -4,16 +4,18 @@ import { api } from '@/lib/api-client';
 import { QueryConfig } from '@/lib/react-query';
 import { Memoria } from '@/types/api';
 
-export const getMemoria = (
-  { memoriaId }: { memoriaId: string }
-): Promise<Memoria> => {
+export const getMemoria = ({
+  memoriaId,
+}: {
+  memoriaId: string;
+}): Promise<Memoria> => {
   return api.get(`/memorias/${memoriaId}`);
 };
 
 export const getMemoriaQueryOptions = (memoriaId: string, locale: string) => {
   return queryOptions({
     queryKey: ['memoria', { memoriaId, locale }],
-    queryFn: () => getMemoria({ memoriaId })
+    queryFn: () => getMemoria({ memoriaId }),
   });
 };
 
@@ -26,7 +28,7 @@ type UseMemoriaOptions = {
 export const useMemoria = ({
   queryConfig,
   memoriaId,
-  locale
+  locale,
 }: UseMemoriaOptions) => {
   return useQuery({
     ...getMemoriaQueryOptions(memoriaId, locale),

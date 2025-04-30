@@ -1,9 +1,12 @@
-import AppLayout from '@/components/layout/layout';
 import type { Metadata } from 'next';
-import { Murecho } from 'next/font/google';
 import './globals.css';
-import { AppProvider } from './provider';
+import { Murecho } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
+import { ReactNode } from 'react';
+
+import AppLayout from '@/components/layout/layout';
+
+import { AppProvider } from './provider';
 
 const murecho = Murecho({
   variable: '--font-murecho',
@@ -15,9 +18,7 @@ export const metadata: Metadata = {
   description: 'A Database for all Resleriana stuff related',
 };
 
-const RootLayout = async ({
-  children,
-}: Readonly<{ children: React.ReactNode }>) => {
+const RootLayout = async ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html lang="en">
       <body className={`${murecho.variable} antialiased`}>
@@ -25,7 +26,8 @@ const RootLayout = async ({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange>
+          disableTransitionOnChange
+        >
           <AppProvider>
             <AppLayout>{children}</AppLayout>
           </AppProvider>

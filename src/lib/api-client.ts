@@ -7,7 +7,9 @@ type RequestOptions = {
   body?: any;
   cookie?: string;
   params?: Record<string, string | number | boolean | undefined | null>;
+  // eslint-disable-next-line no-undef
   cache?: RequestCache;
+  // eslint-disable-next-line no-undef
   next?: NextFetchRequestConfig;
 };
 

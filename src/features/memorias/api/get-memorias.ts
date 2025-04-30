@@ -4,9 +4,17 @@ import { api } from '@/lib/api-client';
 import { QueryConfig } from '@/lib/react-query';
 import { Memoria, Page } from '@/types/api';
 
-export const getMemorias = (
-  { rarity, page, sort, size }: { rarity?: number, page?: number, sort?: string, size?: number },
-): Promise<{
+export const getMemorias = ({
+  rarity,
+  page,
+  sort,
+  size,
+}: {
+  rarity?: number;
+  page?: number;
+  sort?: string;
+  size?: number;
+}): Promise<{
   content: Memoria[];
   page: Page;
 }> => {
@@ -16,9 +24,9 @@ export const getMemorias = (
       rarity,
       page,
       sort,
-      size
+      size,
     },
-  })
+  });
 };
 
 export const getMemoriasQueryOptions = ({
@@ -26,8 +34,14 @@ export const getMemoriasQueryOptions = ({
   locale = 'en',
   page = 1,
   sort,
-  size = 30
-}: { locale?:string, rarity?: number, page?: number, sort?: string, size?: number } = {}) => {
+  size = 30,
+}: {
+  locale?: string;
+  rarity?: number;
+  page?: number;
+  sort?: string;
+  size?: number;
+} = {}) => {
   return queryOptions({
     queryKey: ['memorias', { rarity, locale, page, sort }],
     queryFn: () => getMemorias({ rarity, page, sort, size }),
@@ -35,11 +49,11 @@ export const getMemoriasQueryOptions = ({
 };
 
 type UseMemoriasOptions = {
-  locale?:string;
-  rarity?: number; 
+  locale?: string;
+  rarity?: number;
   page?: number;
   sort?: string;
-  size?: number
+  size?: number;
   queryConfig?: QueryConfig<typeof getMemoriasQueryOptions>;
 };
 
@@ -49,7 +63,7 @@ export const useMemorias = ({
   locale,
   page,
   sort,
-  size
+  size,
 }: UseMemoriasOptions) => {
   return useQuery({
     ...getMemoriasQueryOptions({ rarity, locale, page, sort, size }),
