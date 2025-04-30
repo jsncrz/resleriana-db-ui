@@ -1,4 +1,5 @@
 import { env } from '@/config/env';
+import { useLocaleStore } from '@/hooks/use-locale';
 
 type RequestOptions = {
   method?: string;
@@ -40,6 +41,7 @@ async function fetchApi<T>(
     next,
   } = options;
 
+  const locale = useLocaleStore.getState().locale;
 
   const fullUrl = buildUrlWithParams(`${env.API_URL}${url}`, params);
 
@@ -48,6 +50,7 @@ async function fetchApi<T>(
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      'Accept-Language': locale,
       ...headers,
     },
     body: body ? JSON.stringify(body) : undefined,

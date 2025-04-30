@@ -8,7 +8,7 @@ type StatEntryProps = {
 };
 
 const StatEntry = ({ label, value }: StatEntryProps) => (
-  <div className="row-span-1 col-span-1 min-w-full bg-black/30 px-1 px-2 text-white font-light content-center text-lg">
+  <div className="row-span-1 col-span-1 min-w-full bg-black/30 py-1 px-2 text-white font-light content-center text-lg">
     <div className="flex justify-item-stretch">
       <div className="flex-auto justify-self-start">{label}</div>
       <p className="flex-auto justify-self-end text-end"> {value}</p>

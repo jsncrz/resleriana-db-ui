@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Murecho } from 'next/font/google';
 import './globals.css';
 import { AppProvider } from './provider';
+import { ThemeProvider } from 'next-themes';
 
 const murecho = Murecho({
   variable: '--font-murecho',
@@ -18,11 +19,17 @@ const RootLayout = async ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={`${murecho.variable} antialiased`}>
-        <AppProvider>
-          <AppLayout>{children}</AppLayout>
-        </AppProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <AppProvider>
+            <AppLayout>{children}</AppLayout>
+          </AppProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

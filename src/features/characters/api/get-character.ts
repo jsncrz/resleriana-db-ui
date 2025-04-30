@@ -10,24 +10,26 @@ export const getCharacter = (
   return api.get(`/characters/${characterId}`);
 };
 
-export const getCharacterQueryOptions = (characterId: string) => {
+export const getCharacterQueryOptions = (characterId: string, locale: string) => {
   return queryOptions({
-    queryKey: ['character', characterId],
+    queryKey: ['character', { characterId, locale }],
     queryFn: () => getCharacter({ characterId })
   });
 };
 
 type UseCharacterOptions = {
   characterId: string;
+  locale: string;
   queryConfig?: QueryConfig<typeof getCharacterQueryOptions>;
 };
 
 export const useCharacter = ({
   queryConfig,
   characterId,
+  locale
 }: UseCharacterOptions) => {
   return useQuery({
-    ...getCharacterQueryOptions(characterId),
+    ...getCharacterQueryOptions(characterId, locale),
     ...queryConfig,
   });
 };

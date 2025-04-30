@@ -5,12 +5,8 @@ import { QueryConfig } from '@/lib/react-query';
 import { Character } from '@/types/api';
 
 export const getCharacters = (
-  { locale }: { locale?: string } = { locale: 'en' },
 ): Promise<Character[]> => {
   return api.get(`/characters`, {
-    params: {
-      locale,
-    },
   });
 };
 
@@ -19,7 +15,7 @@ export const getCharactersQueryOptions = ({
 }: { locale?: string } = {}) => {
   return queryOptions({
     queryKey: ['characters', { locale }],
-    queryFn: () => getCharacters({ locale })
+    queryFn: () => getCharacters()
   });
 };
 
