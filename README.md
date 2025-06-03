@@ -1,4 +1,4 @@
-# Resleriana DB UI
+# WIP: Resleriana DB UI
 
 A modern web interface for browsing characters and memoria from Resleriana, built with Next.js and React.
 
