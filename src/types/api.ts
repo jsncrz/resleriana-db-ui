@@ -70,14 +70,14 @@ export type MemoriaGrowth = {
   value: number;
 };
 
-export type MemoriaStat = Entity<{
+export type MemoriaStat = {
   attack: MemoriaGrowth[];
   defense: MemoriaGrowth[];
   hp: MemoriaGrowth[];
   magic: MemoriaGrowth[];
   mental: MemoriaGrowth[];
   speed: MemoriaGrowth[];
-}>;
+};
 
 export type Effect = {
   value: number;

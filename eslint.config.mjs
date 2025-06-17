@@ -12,6 +12,7 @@ import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import jestDomPlugin from 'eslint-plugin-jest-dom';
 import vitestPlugin from 'eslint-plugin-vitest';
 import checkFilePlugin from 'eslint-plugin-check-file';
+import pluginCypress from 'eslint-plugin-cypress';
 
 export default [
   // Base configuration for all files
@@ -93,32 +94,6 @@ export default [
         'error',
         {
           zones: [
-            // disables cross-feature imports
-            {
-              target: './src/features/auth',
-              from: './src/features',
-              except: ['./auth'],
-            },
-            {
-              target: './src/features/comments',
-              from: './src/features',
-              except: ['./comments'],
-            },
-            {
-              target: './src/features/discussions',
-              from: './src/features',
-              except: ['./discussions'],
-            },
-            {
-              target: './src/features/teams',
-              from: './src/features',
-              except: ['./teams'],
-            },
-            {
-              target: './src/features/users',
-              from: './src/features',
-              except: ['./users'],
-            },
             // enforce unidirectional codebase
             {
               target: './src/features',
@@ -168,7 +143,12 @@ export default [
       'jsx-a11y/anchor-is-valid': 'off',
       
       // TypeScript rules
-      '@typescript-eslint/no-unused-vars': ['error'],
+      '@typescript-eslint/no-unused-vars': ['warn', 
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_'
+        }],
       '@typescript-eslint/explicit-function-return-type': ['off'],
       '@typescript-eslint/explicit-module-boundary-types': ['off'],
       '@typescript-eslint/no-empty-function': ['off'],
@@ -179,6 +159,8 @@ export default [
       'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     },
   },
+  // cypress
+  pluginCypress.configs.recommended,
   // File naming conventions
   {
     files: ['src/**/*'],

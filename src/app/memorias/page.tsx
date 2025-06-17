@@ -11,26 +11,27 @@ export const metadata = {
   title: 'Memorias',
   description: 'Memorias',
 };
-
-const MemoriasPage = async ({
-  searchParams,
-}: {
-  searchParams: {
+type Params = Promise<{
     rarity: number | undefined;
     page: string | null;
     sort: string | null;
     size: number | undefined;
-  };
+  }>;
+
+const MemoriasPage = async ({
+  searchParams,
+}: {
+  searchParams: Params;
 }) => {
   const queryClient = new QueryClient();
-  searchParams = await searchParams;
+  const { rarity, page, sort, size } = await searchParams;
 
   await queryClient.prefetchQuery(
     getMemoriasQueryOptions({
-      rarity: searchParams.rarity,
-      page: searchParams.page ? Number(searchParams.page) : 1,
-      size: searchParams.size ? Number(searchParams.size) : 30,
-      sort: searchParams.sort || 'releaseDate,desc',
+      rarity: rarity,
+      page: page ? Number(page) : 1,
+      size: size ? Number(size) : 30,
+      sort: sort || 'releaseDate,desc',
     }),
   );
   const dehydratedState = dehydrate(queryClient);

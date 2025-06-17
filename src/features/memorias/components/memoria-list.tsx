@@ -53,7 +53,7 @@ export const MemoriasList = () => {
   const memoriasQuery = useMemorias({ page, sort, rarity, locale });
   if (memoriasQuery.isLoading) {
     return (
-      <div className="flex h-48 w-full items-center justify-center">HELLO</div>
+      <div className="flex h-48 w-full items-center justify-center">NO DATA</div>
     );
   }
 

@@ -12,23 +12,27 @@ type StatEntryProps = {
   value: number;
 };
 
-const StatEntry = ({ label, value }: StatEntryProps) => (
-  <>
-    <div className="font-bold border-b-1 border-foreground bg-black/30 py-1 px-2 text-white ">
+const StatEntry = ({ label, value }: StatEntryProps) => {
+  const id = label.replace('.', '-');
+  return <>
+    <div
+      id={id + '-stat'}
+      className="font-bold border-b-1 border-foreground bg-black/30 py-1 px-2 text-white "
+    >
       {label}
     </div>
-    <div className="bg-black/30 py-1 px-2 text-white ">
+    <div className="bg-black/30 py-1 px-2 text-white " id={id + '-value'}>
       {(value / 100).toFixed(2)}%
     </div>
   </>
-);
+};
 export const MemoriaStatusView = ({ memoriaId }: { memoriaId: number }) => {
   const memoriaStatusQuery = useMemoriaStatus({ memoriaId });
   const [level, setLevel] = useState(30);
 
   if (memoriaStatusQuery.isLoading) {
     return (
-      <div className="flex h-48 w-full items-center justify-center">HELLO</div>
+      <div className="flex h-48 w-full items-center justify-center">NO DATA</div>
     );
   }
 

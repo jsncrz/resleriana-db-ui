@@ -71,7 +71,7 @@ export const CharactersList = () => {
   const charactersQuery = useCharacters({ locale });
   if (charactersQuery.isLoading) {
     return (
-      <div className="flex h-48 w-full items-center justify-center">HELLO</div>
+      <div className="flex h-48 w-full items-center justify-center">NO DATA</div>
     );
   }
 

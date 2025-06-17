@@ -13,7 +13,7 @@ export const CharacterSkillView = ({
 
   if (characterSkillQuery.isLoading) {
     return (
-      <div className="flex h-48 w-full items-center justify-center">HELLO</div>
+      <div className="flex h-48 w-full items-center justify-center">NO DATA</div>
     );
   }
 
