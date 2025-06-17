@@ -16,7 +16,7 @@ export const metadata = {
 const preloadData = async (characterId: string) => {
   const queryClient = new QueryClient();
   await Promise.all([
-    queryClient.prefetchQuery(getCharacterQueryOptions(characterId)),
+    queryClient.prefetchQuery(getCharacterQueryOptions(characterId, 'jp')),
     queryClient.prefetchQuery(getCharacterStatQueryOptions(characterId)),
   ]);
   const dehydratedState = dehydrate(queryClient);
@@ -38,7 +38,7 @@ const CharacterPage = async ({
   const { dehydratedState, queryClient } = await preloadData(characterId);
 
   const character = queryClient.getQueryData(
-    getCharacterQueryOptions(characterId).queryKey,
+    getCharacterQueryOptions(characterId, 'jp').queryKey,
   );
 
   if (!character) return <div>Character Not Found</div>;

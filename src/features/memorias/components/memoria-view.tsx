@@ -23,7 +23,7 @@ const MemoriaView = ({ memoriaId, isOpen, toggle }: MemoriaViewProps) => {
   const memoriasQuery = useMemoria({ memoriaId: memoriaId.toString(), locale });
   if (memoriasQuery.isLoading) {
     return (
-      <div className="flex h-48 w-full items-center justify-center">HELLO</div>
+      <div className="flex h-48 w-full items-center justify-center">NO DATA</div>
     );
   }
 

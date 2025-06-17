@@ -4,7 +4,7 @@ import { Ability } from '@/types/api';
 
 export const MemoriaAbilityView = ({ abilities }: { abilities: Ability[] }) => {
   if (abilities.length === 0) {
-    return <div>HELLO</div>;
+    return <div>NO DATA</div>;
   }
   const abilityValues = abilities
     .map((a) => a.abilityEffects[0].value)
